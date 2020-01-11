@@ -5,7 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest test.js --runInBand",
+    "step:1": "jest crud --runInBand",
+    "step:2": "jest pagination --runInBand",
+    "step:3": "jest search --runInBand",
+    "step:3bis": "jest perf --runInBand",
+    "specific": "jest specific --runInBand",
+    "global": "jest global --runInBand"
   },
   "repository": {
     "type": "git",
@@ -20,7 +26,18 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
+    "forever": "^2.0.0",
+    "fs": "0.0.1-security",
+    "lodash": "^4.17.15",
+    "moment": "^2.24.0",
     "mongodb": "^3.4.1",
-    "mongoose": "^4.13.20"
+    "mongoose": "^5.8.7",
+    "normalize-mongoose": "0.0.1"
+  },
+  "devDependencies": {
+    "babel-jest": "^24.9.0",
+    "jest": "^24.9.0",
+    "regenerator-runtime": "^0.13.3",
+    "supertest": "^4.0.2"
   }
 }

@@ -1,43 +1,25 @@
 const express = require('express');
-const app = express();
+let mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 
+var urldev = 'mongodb://ukkig3mswvf53dj5fgpu:LmD0HD9agInQX19mdMDo@b4k6cnacznjiujv-mongodb.services.clever-cloud.com:27017/b4k6cnacznjiujv'
+var urlprod = 'mongodb://upzbyeqmkvcoeyg3yqnf:iJnxlOjDRjA8m7vOZOX5@bhirs6eketqjm8b-mongodb.services.clever-cloud.com:27017/bhirs6eketqjm8b'
 const PORT = 8080;
 
-const users = [
-	{"username": "Gui","lastname": "Lefebvre","firstname": "Guillaume","age": 21},
-	{"username": "Raph","lastname": "Marie-Nelly","firstname": "Raphael","age": 27}
-]
+let app = express();
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
+app.use(bodyParser.json({ limit: '50mb', extended: true }))
 
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
+// Connection to MongoDB
+mongoose.connect(urldev)
 
-app.get("/", (req, res) => {
-	res.send(users)
-	console.log(users)
-});
+// Call controller
+const controller = require('./controllers/controller')
+app.use('/', controller)
 
 app.listen(PORT, function() {
 	console.log(`Listening on ${PORT}`);
 });
 
-
-/*
-var MongoClient = require('mongodb').MongoClient;
-var url = 'mongodb://upzbyeqmkvcoeyg3yqnf:iJnxlOjDRjA8m7vOZOX5@bhirs6eketqjm8b-mongodb.services.clever-cloud.com:27017/bhirs6eketqjm8b'
-
-app.get("/", (req, res) => {
- MongoClient.connect(url, function(err, db) {
- 	if(err) {
- 		res.send("Failed Connection \n");
- 		console.log(err)
- 	} else {
- 		res.send("Connected \n");
- 		db.close()	
- 	}
-    
-}); 
-});
-*/
 
 

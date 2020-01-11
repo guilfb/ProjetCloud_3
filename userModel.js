@@ -1,33 +1,35 @@
-const mongoose = require('mongoose')
+// IMPORT OF MONGOOSE
+const mongoose = require('mongoose');
+// IMPORT OF NORMALIZE MONGOOSE (MOVE _ID TO PUT ID)
+const normalize = require('normalize-mongoose');
 
-
-//setup schema
+// USER MONGOOSE SCHEMA
 const userSchema = mongoose.Schema({
     firstName: {
         type: String,
-        unique: true,
-        required: true
     },
     lastName: {
         type: String,
-        unique: true,
-        required: true
     },
-    birthDdate: {
-        type: Date,
-        default: Date.now()
-    },
-    email: {
+    birthDay: {
         type: String,
-        unique: true,
-        required: true
-    },
-    password: {
-        type: String,
-        required: true
+        default: "01/01/2000"
     },
     position: {
-        lat: { type: Number, default: 0},
-        lon: {type: Number, default: 0}
+        lat: {
+            type: Number,
+            default: 0
+        },
+        lon: {
+            type: Number,
+            default: 0
+        }
     }
-})
+}, {
+    versionKey: false,
+});
+
+// USE THE NORMALIZE PLUGIN
+userSchema.plugin(normalize);
+
+module.exports = mongoose.model('user', userSchema)

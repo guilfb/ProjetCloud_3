@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Step 1 global REST calls GET /user Given database have 1 users should return array with user 1`] = `
+Object {
+  "birthDay": "02/24/1994",
+  "firstName": "timeo",
+  "lastName": "picard",
+  "position": Object {
+    "lat": -40.962026,
+    "lon": 24.684415,
+  },
+}
+`;
+
+exports[`Step 1 global REST calls POST /user should return same user 1`] = `
+Object {
+  "birthDay": "02/24/1994",
+  "firstName": "timeo",
+  "lastName": "picard",
+  "position": Object {
+    "lat": -40.962026,
+    "lon": 24.684415,
+  },
+}
+`;

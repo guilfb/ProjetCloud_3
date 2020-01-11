@@ -1,0 +1,21 @@
+name: CI # Name of our workflow
+
+on: [push] # Repository event that will trigger the workflow
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest # Environment job will run in
+
+    steps:
+    - uses: actions/checkout@v1
+    - name : Dependencies installation
+      run: npm i 
+    - name: Install forever Dependencies
+      run: sudo npm install forever -g
+    - name: Start Server
+      run: forever start index.js
+    - name: Run Global Test
+      run: npm run global
+    - name: Close Server
+      run: forever stop index.js
