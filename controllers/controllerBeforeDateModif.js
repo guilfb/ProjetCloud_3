@@ -12,6 +12,7 @@ router.get('/', (req, res) => {
 // CRUD GLOBAL
 router.route('/user')
     .get((req, res) => {
+
         let skipUrl = req.query.page * 100;
         let limitUrl = 100;
 
