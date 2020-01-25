@@ -11,7 +11,11 @@ app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
 app.use(bodyParser.json({ limit: '50mb', extended: true }))
 
 // Connection to MongoDB
-mongoose.connect(urldev)
+mongoose.connect(urldev, {
+	useNewUrlParser: true, 
+	useUnifiedTopology: true,
+	useFindAndModify: false
+})
 
 // Call controller
 const controller = require('./controllers/controller')

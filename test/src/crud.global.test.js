@@ -105,7 +105,6 @@ describe('Step 1 global REST calls', () => {
             });
         });
 
-
         it('should return same user', done => {
             request.post('/user').send(simpleUser).end((err,res) => {
                 expect(_.omit(res.body, 'id')).toMatchSnapshot();

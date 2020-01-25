@@ -70,7 +70,7 @@ describe('Step 3 search test', () => {
             request.get('/user/age?gt=-10').expect(400).end(done);
         });
     });
-/*
+
     describe('Search by text', () => {
 
         it('should return 200', done => {
@@ -143,5 +143,4 @@ describe('Step 3 search test', () => {
             });
         });
     });
-    */
 });

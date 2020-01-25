@@ -12,8 +12,7 @@ const userSchema = mongoose.Schema({
         type: String,
     },
     birthDay: {
-        type: String,
-        default: "01/01/2000"
+        type: Date,
     },
     position: {
         lat: {
