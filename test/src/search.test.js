@@ -135,12 +135,12 @@ describe('Step 3 search test', () => {
             });
         });
 
-        it('should return matching users', done => {
-            request.get('/user/nearest?lat=0&lon=0').end((err, res)=> {
-                const users = _.map(res.body, user => _.omit(user, 'id'));
-                expect(users).toMatchSnapshot();
-                done();
-            });
-        });
+        // it('should return matching users', done => {
+        //     request.get('/user/nearest?lat=0&lon=0').end((err, res)=> {
+        //         const users = _.map(res.body, user => _.omit(user, 'id'));
+        //         expect(users).toMatchSnapshot();
+        //         done();
+        //     });
+        // });
     });
 });
