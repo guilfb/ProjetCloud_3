@@ -10,9 +10,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Dependencies installation
-       run: npm ci
+        run: npm ci
       - name: Install forever Dependencies
-       run: sudo npm install forever -g
+        run: sudo npm install forever -g
       - name: Start Server
         run: forever start index.js
       - name: Run Search

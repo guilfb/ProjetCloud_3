@@ -14,4 +14,4 @@ jobs:
       - name: Start eslint
         run: npm run lint
       - name: Start eslint controller
-        run: npm run lintconroller
+        run: npm run lintcontroller
