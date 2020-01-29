@@ -12,8 +12,8 @@
     "step:3bis": "jest perf --runInBand",
     "global": "jest global --runInBand",
     "specific": "jest specific --runInBand",
-    "lintfixcontroller": "eslint ./controllers/*.js --fix",
-    "lintfix": "eslint *.js --fix"
+    "lintcontroller": "eslint ./controllers/*.js",
+    "lint": "eslint *.js"
   },
   "repository": {
     "type": "git",
