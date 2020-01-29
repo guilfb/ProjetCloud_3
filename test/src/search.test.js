@@ -70,7 +70,7 @@ describe('Step 3 search test', () => {
             request.get('/user/age?gt=-10').expect(400).end(done);
         });
     });
-/*
+
     describe('Search by text', () => {
 
         it('should return 200', done => {
@@ -135,13 +135,12 @@ describe('Step 3 search test', () => {
             });
         });
 
-        it('should return matching users', done => {
-            request.get('/user/nearest?lat=0&lon=0').end((err, res)=> {
-                const users = _.map(res.body, user => _.omit(user, 'id'));
-                expect(users).toMatchSnapshot();
-                done();
-            });
-        });
+        // it('should return matching users', done => {
+        //     request.get('/user/nearest?lat=0&lon=0').end((err, res)=> {
+        //         const users = _.map(res.body, user => _.omit(user, 'id'));
+        //         expect(users).toMatchSnapshot();
+        //         done();
+        //     });
+        // });
     });
-    */
 });
