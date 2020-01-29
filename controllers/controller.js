@@ -73,34 +73,114 @@ router.route('/user/age', function() {})
                         data: err.toString(),
                     })
                 }
+                console.log(user)
                 let finalusers = utileBis(user)
                 return res.status(200).send(finalusers);
             });
         }
     });
 
-// CRUD GLOBAL
-router.route('/user')
+router.route('/user/search')
     .get((req, res) => {
+        let termToSearch = req.query.term;
         let skipUrl = req.query.page * 100;
         let limitUrl = 100;
 
-        User.find({}, null, {
-            skip: skipUrl,
-            limit: limitUrl,
-        }, (err, users) => {
-            if (err) {
-                return res.status(400).send({
-                    status: 400,
-                    success: false,
-                    message: 'Error.',
-                    data: err.toString()
-                })
-            }
+        if(termToSearch) {
+            User.find({
+                $or : [
+                    { firstName: termToSearch },
+                    { lastName: termToSearch }
+                ]
+            }, null, {
+                skip: skipUrl,
+                limit: limitUrl,
+            }, function(err,user) {
+                if (err) {
+                    return res.status(404).send({
+                        status: 404,
+                        success: false,
+                        message: 'Il y a une erreur : ',
+                        data: err.toString(),
+                    })
+                }
+                let finalusers = utileBis(user)
+                return res.status(200).send(finalusers);
+            });
+        } else {
+            return res.status(404).send({
+                status: 404,
+                success: false,
+                message: 'Error.',
+                data: 'Pensez à saisir un terme à chercher.'
+            })
+        }
+    })
 
-            let finalusers = utileBis(users)
-            return res.status(200).send(finalusers)
-        });
+router.route('/user/nearest')
+    .get((req, res) => {
+        let latToSearch = req.query.lat;
+        let lonToSearch = req.query.lon;
+
+        if(latToSearch && lonToSearch) {
+            return res.status(200).send([]);
+        } else {
+            return res.status(404).send({
+                status: 404,
+                success: false,
+                message: 'Error.',
+                data: 'Pensez à saisir un terme à chercher.'
+            })
+        }
+    })
+
+
+// CRUD GLOBAL
+router.route('/user')
+    .get((req, res) => {
+        let termToSearch = req.query.term;
+        let skipUrl = req.query.page * 100;
+        let limitUrl = 100;
+
+        if(termToSearch) {
+            User.find({
+                $or : [
+                    { firstName: termToSearch },
+                    { lastName: termToSearch }
+                ]
+            }, null, {
+                skip: skipUrl,
+                limit: limitUrl,
+            }, function(err,user) {
+                if (err) {
+                    return res.status(404).send({
+                        status: 404,
+                        success: false,
+                        message: 'Il y a une erreur : ',
+                        data: err.toString(),
+                    })
+                }
+                let finalusers = utileBis(user)
+                return res.status(200).send(finalusers);
+            });
+        } else {
+            User.find({}, null, {
+                skip: skipUrl,
+                limit: limitUrl,
+            }, (err, users) => {
+                if (err) {
+                    return res.status(400).send({
+                        status: 400,
+                        success: false,
+                        message: 'Error.',
+                        data: err.toString()
+                    })
+                }
+
+                let finalusers = utileBis(users)
+                return res.status(200).send(finalusers)
+            });
+        }
     })
     .put((req, res) => {
         let users = utils(req.body)
@@ -182,7 +262,7 @@ router.route('/user/:id', function() {})
                     data: err.toString()
                 })
             }
-            
+
             return res.status(200).send(userGet);
         })
     })

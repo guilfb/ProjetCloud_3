@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 
 var urldev = 'mongodb://ukkig3mswvf53dj5fgpu:LmD0HD9agInQX19mdMDo@b4k6cnacznjiujv-mongodb.services.clever-cloud.com:27017/b4k6cnacznjiujv'
 var urlprod = 'mongodb://upzbyeqmkvcoeyg3yqnf:iJnxlOjDRjA8m7vOZOX5@bhirs6eketqjm8b-mongodb.services.clever-cloud.com:27017/bhirs6eketqjm8b'
+
 const PORT = 8080;
 
 let app = express();
@@ -12,7 +13,7 @@ app.use(bodyParser.json({ limit: '50mb', extended: true }))
 
 // Connection to MongoDB
 mongoose.connect(urldev, {
-	useNewUrlParser: true, 
+	useNewUrlParser: true,
 	useUnifiedTopology: true,
 	useFindAndModify: false
 })
@@ -22,8 +23,5 @@ const controller = require('./controllers/controller')
 app.use('/', controller)
 
 app.listen(PORT, function() {
-	console.log(`Listening on ${PORT}`);
+	console.log("Listening on ${PORT}");
 });
-
-
-
