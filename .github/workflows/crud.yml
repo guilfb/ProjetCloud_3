@@ -1,4 +1,4 @@
-name: CI-Search # Name of our workflow
+name: CI-Crud # Name of our workflow
 
 on: [push] # Repository event that will trigger the workflow
 
@@ -15,7 +15,7 @@ jobs:
         run: sudo npm install forever -g
       - name: Start Server
         run: forever start index.js
-      - name: Run Search
-        run: npm run step:3
+      - name: Run Test
+        run: npm run test
       - name: Close Server
         run: forever stop index.js
