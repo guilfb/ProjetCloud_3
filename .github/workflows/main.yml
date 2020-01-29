@@ -17,5 +17,9 @@ jobs:
       run: forever start index.js
     - name: Run Global Test
       run: npm run global
+    - name: Run Specific Test
+      run: npm run specific
+    - name: Run Pagination Test
+      run: npm run step:2
     - name: Close Server
       run: forever stop index.js
