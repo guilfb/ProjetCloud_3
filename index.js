@@ -4,7 +4,6 @@ var bodyParser = require('body-parser')
 const controller = require('./controllers/controller')
 require('dotenv').config()
 
-
 console.log('Using mongo base', process.env.MONGO)
 
 // const PORT = 8080
