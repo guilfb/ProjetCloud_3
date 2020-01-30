@@ -16,6 +16,6 @@ jobs:
       - name: Start Server
         run: forever start index.js
       - name: Run Test
-        run: npm run test
+        run: npm run test -- -u
       - name: Close Server
         run: forever stop index.js
