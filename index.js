@@ -3,15 +3,15 @@ const mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 const controller = require('./controllers/controller')
 
-//require('dotenv').config({ path: require('find-config')('.env') })
+// require('dotenv').config({ path: require('find-config')('.env') })
 
-var urldev = 'mongodb://ukkig3mswvf53dj5fgpu:LmD0HD9agInQX19mdMDo@b4k6cnacznjiujv-mongodb.services.clever-cloud.com:27017/b4k6cnacznjiujv'
+// var urldev = 'mongodb://ukkig3mswvf53dj5fgpu:LmD0HD9agInQX19mdMDo@b4k6cnacznjiujv-mongodb.services.clever-cloud.com:27017/b4k6cnacznjiujv'
 // var urlprod = 'mongodb://upzbyeqmkvcoeyg3yqnf:iJnxlOjDRjA8m7vOZOX5@bhirs6eketqjm8b-mongodb.services.clever-cloud.com:27017/bhirs6eketqjm8b'
 
-let url;
-let env = process.env.environnement || "dev"
+let url
+const env = process.env.environnement || 'dev'
 
-if(env == "dev") {
+if (env === 'dev') {
   url = 'mongodb://ukkig3mswvf53dj5fgpu:LmD0HD9agInQX19mdMDo@b4k6cnacznjiujv-mongodb.services.clever-cloud.com:27017/b4k6cnacznjiujv'
 } else {
   url = 'mongodb://upzbyeqmkvcoeyg3yqnf:iJnxlOjDRjA8m7vOZOX5@bhirs6eketqjm8b-mongodb.services.clever-cloud.com:27017/bhirs6eketqjm8b'
