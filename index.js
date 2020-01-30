@@ -1,9 +1,11 @@
 const express = require('express')
 const mongoose = require('mongoose')
 var bodyParser = require('body-parser')
+const controller = require('./controllers/controller')
+
 //require('dotenv').config({ path: require('find-config')('.env') })
 
-// var urldev = 'mongodb://ukkig3mswvf53dj5fgpu:LmD0HD9agInQX19mdMDo@b4k6cnacznjiujv-mongodb.services.clever-cloud.com:27017/b4k6cnacznjiujv'
+var urldev = 'mongodb://ukkig3mswvf53dj5fgpu:LmD0HD9agInQX19mdMDo@b4k6cnacznjiujv-mongodb.services.clever-cloud.com:27017/b4k6cnacznjiujv'
 // var urlprod = 'mongodb://upzbyeqmkvcoeyg3yqnf:iJnxlOjDRjA8m7vOZOX5@bhirs6eketqjm8b-mongodb.services.clever-cloud.com:27017/bhirs6eketqjm8b'
 
 let url;
@@ -16,10 +18,9 @@ if(env == "dev") {
 }
 
 console.log(env)
-console.log(url)
 
-//const PORT = 8080
-const PORT = '${process.env.PORT || 8080}'
+// const PORT = 8080
+const PORT = `${process.env.PORT || 8080}`
 
 const app = express()
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
@@ -33,7 +34,6 @@ mongoose.connect(url, {
 })
 
 // Call controller
-const controller = require('./controllers/controller')
 app.use('/', controller)
 
 app.listen(PORT, function () {
